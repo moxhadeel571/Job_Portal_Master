@@ -1,0 +1,91 @@
+    <!doctype html>
+    <html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="/static/flexhome.css" type="text/css" rel="stylesheet">
+        <link rel="stylesheet" href="/static/css/loginAndregistration.css" ty>
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+        <title>Hello, world!</title>
+        <style>
+            .FlexContainer {
+                display: flex;
+                justify-content: space-between;
+                gap: 20px;
+                margin: 50px 0;
+            }
+
+            .FlexContainer > div {
+                flex-basis: 30%;
+                padding: 20px;
+                border: 1px solid #ccc;
+                border-radius: 10px;
+                background-color: #f9f9f9;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            }
+
+            h1 {
+                font-size: 24px;
+                margin-bottom: 10px;
+            }
+
+            h2 {
+                font-size: 16px;
+                margin-bottom: 20px;
+            }
+
+            /* Default styles */
+            .background-div {
+                font-size: 25px;
+                color: black;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                background-image: url("https://images.unsplash.com/photo-1529400971008-f566de0e6dfc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80");
+                background-size: cover;
+                background-position: center;
+            }
+
+            /* Adjusted styles for smaller screens */
+            @media (max-width: 768px) {
+                .background-div {
+                    height: 50vh;
+                    background-size: contain;
+                    background-position: top;
+                }
+            }
+        </style>
+    </head>
+    <body>
+    <th:block th:include="fragments/candidatenavbar :: #navbar_template"></th:block>
+
+    <div class="background-div">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h1>Welcome to Job Portal</h1>
+                    <p>Find your dream job or post job openings.</p>
+                    <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#applyposting">Get Started</a>
+                </div>
+                <div class="col-md-6">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!----------pop sign in --------->
+    <!----------------------why chose us-------------------------------->
+    <th:block th:include="fragments/footer :: #footer"></th:block>
+
+    <!-- Optional JavaScript; choose one of the two! -->
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
+    -->
+    </body>
+    </html>

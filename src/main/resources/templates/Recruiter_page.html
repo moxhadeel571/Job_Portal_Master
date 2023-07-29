@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+
+<html
+      xmlns:th="http://www.thymeleaf.org">
+
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recruiter Page</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.korzh.com/metroui/v4/css/metro-all.min.css">
+  <link rel="stylesheet" href="https://cdn.korzh.com/metroui/v4.5.1/css/metro-all.min.css">
+  <link rel="stylesheet" href="https://cdn.korzh.com/metroui/v4/css/metro.min.css">
+  <link rel="stylesheet" href="https://cdn.korzh.com/metroui/v4/css/metro-colors.min.css">
+  <link rel="stylesheet" href="https://cdn.korzh.com/metroui/v4/css/metro-rtl.min.css">
+  <link rel="stylesheet" href="https://cdn.korzh.com/metroui/v4/css/metro-icons.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="/static/button.css">
+  <link rel="stylesheet" type="text/css" href="../static/static/Recruitment_page.css">
+  <!-- Custom CSS -->
+
+</head>
+<style>
+  .popover-wrapper {
+    position: relative;
+    display: inline-block;
+  }
+
+  .popover-content {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: max-content;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(135,206,235);
+    z-index: 9999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+
+  .popover-wrapper:hover .popover-content {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .label{
+    font-weight: bold;
+    }
+</style>
+<body >
+<!-- Navbar -->
+<th:block th:include="fragments/candidatenavbar :: #navbar_template"></th:block>
+<!----pop up for adding jobs post------->
+<section>
+  <h2 style="border: 1px solid; padding: 5px; background-color: cornflowerblue; color: white;">Candidate Management</h2>
+  <br>
+  <div class="row">
+    <div class="col-lg-6 col-md-6 col-sm-12 mb-4" th:each="RegCandidate:${RegCandidate}">
+      <div class="card" style="width: 25rem;">
+        <div class="card-body">
+          <h5 class="card-title" th:text="${RegCandidate.fullName}" style="font-weight: bold;">Candidate Name</h5>
+          <h6 class="card-subtitle mb-2 text-muted" th:text="${RegCandidate.email}" style="font-weight: bold;">Email</h6>
+          <div class="card-text">
+            <p><strong>Gender:</strong> <span th:text="${RegCandidate.gender}">Gender</span></p>
+            <p><strong>Education:</strong> <span th:text="${RegCandidate.education}">Education</span></p>
+            <p><strong>Location:</strong> <span th:text="${RegCandidate.location}">Location</span></p>
+            <p><strong>Skills:</strong> <span th:text="${RegCandidate.skills}">Skills</span></p>
+            <p><strong>Status:</strong> Active</p>
+          </div>
+          <div class="card-footer" style="background-color: antiquewhite">
+            <a class="btn btn-primary" th:href="@{/download_static/{candidateId}(candidateId=${RegCandidate.id})}"  target="_blank" style="margin-right: 20px">Download File</a>
+            <div class="container">
+              <button type="button" class="btn btn-primary"  data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Send Message</button>
+
+            </div>
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">New message</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <!-- ... your existing HTML code ... -->
+
+                    <form id="emailForm" th:object="${Data_info}" method="post" th:action="@{/send_email}">
+                      <div class="mb-3">
+                        <label for="to" class="col-form-label">Recipient:</label>
+                        <input type="text" class="form-control" name="to"  th:field="*{to}" id="to" required>
+                      </div>
+                      <div class="mb-3">
+                        <label for="subject" class="col-form-label">Subject:</label>
+                        <input type="text" class="form-control" name="subject" th:field="*{subject}" id="subject" required>
+                      </div>
+                      <div class="mb-3">
+                        <label for="body" class="col-form-label">Message:</label>
+                        <textarea class="form-control" name="body" th:field="*{body}" id="body" required></textarea>
+                      </div>
+                    </form>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary" id="sendMessageBtn">Send message</button>
+                    </div>
+
+                  </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal -->
+
+  </div>
+  </div>
+</section>
+
+
+<!-- Profile Content -->
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.korzh.com/metroui/v4/js/metro.min.js"></script>
+</body>
+<th:block th:include="fragments/footer :: #footer"></th:block>
+
+
+<script>
+  function updateSalaryInputs(value) {
+    const salaryMinInput = document.getElementById('salaryMin');
+    const salaryMaxInput = document.getElementById('salaryMax');
+
+    const maxSalary = 100000;
+    const minSalary = 0;
+
+    const range = maxSalary - minSalary;
+    const salary = minSalary + (range * value / 100);
+
+    salaryMinInput.value = salary.toFixed(2);
+    salaryMaxInput.value = maxSalary.toFixed(2);
+  }
+  $(document).ready(function() {
+    // Enable popovers
+    $('[data-role="popover"]').popover();
+  });
+  document.getElementById('sendMessageBtn').addEventListener('click', function () {
+    document.getElementById('emailForm').submit();
+  });
+
+</script>
+</html>

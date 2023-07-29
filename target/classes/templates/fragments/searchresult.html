@@ -1,0 +1,21 @@
+<template id="content-search">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4" th:each="showjobs : ${showjobs}">
+                <div class="job-card">
+                    <div class="job-details">
+                        <h3 class="job-title" th:text="${showjobs.title}">Job Title</h3>
+                        <p class="company" th:text="${showjobs.company}">Company Name</p>
+                        <p class="location" th:text="${showjobs.location}">Location</p>
+                        <p class="job-mode" th:text="${showjobs.jobMode}">Job Mode</p>
+                        <p class="experience-years" th:text="${showjobs.experienceYears}">Experience Years</p>
+                    </div>
+                </div>
+                <div class="job-apply">
+                    <a class="btn btn-primary btn-lg" th:href="@{/viewjob/{id}(id=${showjobs.id})}">View Job</a>
+                </div>
+                <!-- Scrollable modal -->
+            </div>
+        </div>
+    </div>
+</template>

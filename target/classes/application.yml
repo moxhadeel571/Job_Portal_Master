@@ -1,0 +1,4 @@
+spring:
+  security:
+    roles:
+      normal-user: ROLE_NORMAL_USER
