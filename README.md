@@ -37,8 +37,11 @@ To run the Job Portal project locally, follow these steps:
    ./mvnw clean package
    java -jar target/job-portal-0.0.1-SNAPSHOT.jar
    ```
+   **or use
 
-5. **Access the Portal:**
+   ```  mvn install```
+
+6. **Access the Portal:**
    - Open a web browser and go to `http://localhost:8080` to access the Job Portal.
 
 ## Technologies Used
@@ -61,12 +64,4 @@ Contributions are welcome! If you'd like to contribute to the project, please fo
 4. Push your changes to your forked repository.
 5. Create a pull request to merge your changes into the main project.
 
-## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
-
-## Acknowledgments
-
-- Special thanks to [Company Name] for supporting this project.
-
-Feel free to customize this README file further to match the specifics of your Spring Boot-based job portal project, including project structure, technologies, and acknowledgments.
